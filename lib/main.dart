@@ -34,10 +34,28 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
+      body: Container(
+        padding: EdgeInsets.all(10),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('ข้อความ'),
+            SizedBox(
+              height: 10,
+            ),
+            TextFormField(),
+            SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: RaisedButton(
+                onPressed: () {},
+                child: Text('Submit'),
+              ),
+            )
+          ],
         ),
       ),
     );
