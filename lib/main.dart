@@ -53,6 +53,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 onSaved: (value) {
                   _inputMessage = value;
                 },
+                validator: (value) {
+                  if (value == null) {
+                    return "กรุณากรอกข้อความ";
+                  } else {
+                    return "";
+                  }
+                },
               ),
               SizedBox(
                 height: 10,
@@ -61,8 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: double.infinity,
                 child: RaisedButton(
                   onPressed: () {
-                    _formKey.currentState.save();
-                    print(_inputMessage);
+                    if (_formKey.currentState.validate()) {
+                      _formKey.currentState.save();
+                      print(_inputMessage);
+                    }
                   },
                   child: Text('Submit'),
                 ),
