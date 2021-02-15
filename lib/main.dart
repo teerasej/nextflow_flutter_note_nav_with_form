@@ -28,6 +28,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final _formKey = GlobalKey<FormState>();
+  String _inputMessage = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,26 +39,36 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         padding: EdgeInsets.all(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('ข้อความ'),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormField(),
-            SizedBox(
-              height: 10,
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: RaisedButton(
-                onPressed: () {},
-                child: Text('Submit'),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text('ข้อความ'),
+              SizedBox(
+                height: 10,
               ),
-            )
-          ],
+              TextFormField(
+                onSaved: (value) {
+                  _inputMessage = value;
+                },
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: RaisedButton(
+                  onPressed: () {
+                    _formKey.currentState.save();
+                    print(_inputMessage);
+                  },
+                  child: Text('Submit'),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
